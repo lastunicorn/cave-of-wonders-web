@@ -7,64 +7,64 @@ import { ConversionRate, CurrencyTotalOverview } from '../../models/pot-response
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-pot-list',
-  standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
-  templateUrl: './pot-list.html',
-  styleUrl: './pot-list.scss'
+    selector: 'app-pot-list',
+    standalone: true,
+    imports: [CommonModule, HttpClientModule, FormsModule],
+    templateUrl: './pot-list.html',
+    styleUrl: './pot-list.scss'
 })
 export class PotList implements OnInit {
-  potInstances = signal<PotInstance[]>([]);
-  loading = signal<boolean>(false);
-  error = signal<string | null>(null);
-  totalValue = signal<MonetaryValue | null>(null);
-  conversionRates = signal<ConversionRate[]>([]);
-  currencyOverviews = signal<CurrencyTotalOverview[]>([]);
-  responseDate = signal<Date | null>(null);
-  
-  currencies = [
-    { code: '', label: 'Not specified' },
-    { code: 'RON', label: 'RON' },
-    { code: 'EUR', label: 'EUR' }
-  ];
-  selectedCurrency = '';
+    potInstances = signal<PotInstance[]>([]);
+    loading = signal<boolean>(false);
+    error = signal<string | null>(null);
+    totalValue = signal<MonetaryValue | null>(null);
+    conversionRates = signal<ConversionRate[]>([]);
+    currencyOverviews = signal<CurrencyTotalOverview[]>([]);
+    responseDate = signal<Date | null>(null);
 
-  constructor(private potService: PotService) {
-  }
+    currencies = [
+        { code: '', label: 'Not specified' },
+        { code: 'RON', label: 'RON' },
+        { code: 'EUR', label: 'EUR' }
+    ];
+    selectedCurrency = '';
 
-  ngOnInit(): void {
-    this.loadPots();
-  }
+    constructor(private potService: PotService) {
+    }
 
-  loadPots(): void {
-    this.potInstances.set([]);
-    this.loading.set(true);
-    this.error.set(null);
+    ngOnInit(): void {
+        this.loadPots();
+    }
 
-    const currency = this.selectedCurrency !== '' ? this.selectedCurrency : undefined;
-    
-    this.potService.getPots(currency).subscribe({
-      next: (response) => {
-        this.potInstances.set(response.potInstances || []);
-        this.totalValue.set(response.total);
-        this.conversionRates.set(response.conversionRates || []);
-        this.currencyOverviews.set(response.currencyTotalOverviews || []);
-        this.responseDate.set(response.date);
-        this.loading.set(false);
-      },
-      error: (error) => {
-        console.error('Error loading pots:', error);
-        this.error.set('An error occurred while loading pot accounts.');
-        this.loading.set(false);
-      }
-    });
-  }
+    loadPots(): void {
+        this.potInstances.set([]);
+        this.loading.set(true);
+        this.error.set(null);
 
-  getActivePotCount(): number {
-    return this.potInstances()?.filter(pot => pot.isActive).length || 0;
-  }
-  
-  onCurrencyChange(): void {
-    this.loadPots();
-  }
+        const currency = this.selectedCurrency !== '' ? this.selectedCurrency : undefined;
+
+        this.potService.getPots(currency).subscribe({
+            next: (response) => {
+                this.potInstances.set(response.potInstances || []);
+                this.totalValue.set(response.total);
+                this.conversionRates.set(response.conversionRates || []);
+                this.currencyOverviews.set(response.currencyTotalOverviews || []);
+                this.responseDate.set(response.date);
+                this.loading.set(false);
+            },
+            error: (error) => {
+                console.error('Error loading pots:', error);
+                this.error.set('An error occurred while loading pot accounts.');
+                this.loading.set(false);
+            }
+        });
+    }
+
+    getActivePotCount(): number {
+        return this.potInstances()?.filter(pot => pot.isActive).length || 0;
+    }
+
+    onCurrencyChange(): void {
+        this.loadPots();
+    }
 }

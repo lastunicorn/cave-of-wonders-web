@@ -6,13 +6,13 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { selfSignedCertificateInterceptor } from './interceptors/self-signed-certificate.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection(), // Restored zoneless change detection
-    provideRouter(routes),
-    provideClientHydration(withEventReplay()),
-    provideHttpClient(
-      withInterceptors([selfSignedCertificateInterceptor])
-    )
-  ]
+    providers: [
+        provideBrowserGlobalErrorListeners(),
+        provideZonelessChangeDetection(), // Restored zoneless change detection
+        provideRouter(routes),
+        provideClientHydration(withEventReplay()),
+        provideHttpClient(
+            withInterceptors([selfSignedCertificateInterceptor])
+        )
+    ]
 };

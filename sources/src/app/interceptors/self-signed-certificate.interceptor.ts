@@ -12,19 +12,19 @@ export const SSL_VERIFY = new HttpContextToken<boolean>(() => true);
  * It should never be used in production.
  */
 export const selfSignedCertificateInterceptor: HttpInterceptorFn = (
-  req: HttpRequest<unknown>,
-  next: HttpHandlerFn
+    req: HttpRequest<unknown>,
+    next: HttpHandlerFn
 ) => {
-  // Only apply this in development mode
-  if ((isDevMode() || isDevelopmentMode()) && req.url.includes('localhost')) {
-    // Create a modified request with SSL verification disabled for localhost
-    const modifiedReq = req.clone({
-      context: req.context.set(SSL_VERIFY, false)
-    });
-    console.log('Development mode: SSL verification disabled for localhost request');
-    return next(modifiedReq);
-  }
-  
-  // Pass through all other requests unchanged
-  return next(req);
+    // Only apply this in development mode
+    if ((isDevMode() || isDevelopmentMode()) && req.url.includes('localhost')) {
+        // Create a modified request with SSL verification disabled for localhost
+        const modifiedReq = req.clone({
+            context: req.context.set(SSL_VERIFY, false)
+        });
+        console.log('Development mode: SSL verification disabled for localhost request');
+        return next(modifiedReq);
+    }
+
+    // Pass through all other requests unchanged
+    return next(req);
 };
