@@ -1,0 +1,9 @@
+<nav class="main-menu">
+  <ul>
+    @for (item of menuItems; track item) {
+      <li>
+        <a [routerLink]="item.path" routerLinkActive="active">{{ item.label }}</a>
+      </li>
+    }
+  </ul>
+</nav>
