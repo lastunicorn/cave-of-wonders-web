@@ -7,6 +7,12 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
+// Disable certificate validation in development mode
+if (process.env['NODE_ENV'] !== 'production') {
+  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+  console.warn('Development mode: SSL certificate validation disabled on server.');
+}
+
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();

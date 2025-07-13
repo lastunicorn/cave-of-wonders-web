@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable, isDevMode } from '@angular/core';
+import { HttpClient, HttpParams, HttpContext } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PotResponse } from '../models/pot-response.model';
+import { SSL_VERIFY } from '../interceptors/self-signed-certificate.interceptor';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +20,12 @@ export class PotService {
             params = params.set('Currency', currency);
         }
         
-        return this.http.get<PotResponse>(this.apiUrl, { params });
+        // Create context with SSL verification disabled for development mode
+        const context = new HttpContext().set(SSL_VERIFY, isDevMode());
+        
+        return this.http.get<PotResponse>(this.apiUrl, { 
+            params,
+            context
+        });
     }
 }
