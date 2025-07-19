@@ -42,7 +42,9 @@ export class PotList implements OnInit {
         this.loading.set(true);
         this.error.set(null);
 
-        const currency = this.selectedCurrency !== '' ? this.selectedCurrency : undefined;
+        const currency = this.selectedCurrency !== ''
+            ? this.selectedCurrency
+            : undefined;
 
         this.potService.getPots(currency).subscribe({
             next: (response) => {
@@ -65,11 +67,11 @@ export class PotList implements OnInit {
         if (value === null || value === undefined) {
             return { integer: '0', decimal: '00' };
         }
-        
+
         // Format to 2 decimal places and split by decimal point
         const formatted = value.toFixed(2);
         const parts = formatted.split('.');
-        
+
         return {
             integer: parts[0],
             decimal: parts.length > 1 ? parts[1] : '00'
