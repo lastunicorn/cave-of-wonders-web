@@ -12,7 +12,7 @@ import { FormattedCurrency } from '../../utils/formatted-currency';
 })
 export class PotCard {
     @Input({ required: true })
-    public account!: PotInstance;
+    account!: PotInstance;
 
     private _value!: FormattedCurrency;
     private _normalizedValue!: FormattedCurrency;

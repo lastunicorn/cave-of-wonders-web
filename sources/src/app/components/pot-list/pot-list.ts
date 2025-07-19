@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PotService } from '../../external/cave-api/pot.endpoint';
+import { PotService } from '../../external/cave-api/pot.proxy';
 import { PotInstance, MonetaryValue } from '../../models/pot-instance.model';
 import { HttpClientModule } from '@angular/common/http';
 import { ConversionRate, CurrencyTotalOverview } from '../../models/pot-response.model';
