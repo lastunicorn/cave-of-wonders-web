@@ -45,11 +45,11 @@
             <div class="summary-stats">
                 <div class="stat-item">
                     <span class="stat-label">Total Accounts:</span>
-                    <span class="stat-value">{{ potInstances().length }}</span>
+                    <span class="stat-value">{{ potInstances().length | number:'1.0-0':'en-US' }}</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">Active Accounts:</span>
-                    <span class="stat-value">{{ getActivePotCount() }}</span>
+                    <span class="stat-value">{{ getActivePotCount() | number:'1.0-0':'en-US' }}</span>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div *ngFor="let overview of currencyOverviews()" class="currency-card">
                 <div class="currency-header">
                     <span class="currency-code">{{ overview.value && overview.value.currency || 'Unknown' }}</span>
-                    <span class="percentage">{{ overview.percentage | number:'1.2-2' }}%</span>
+                    <span class="percentage">{{ overview.percentage | number:'1.2-2':'en-US' }}%</span>
                 </div>
                 <div class="currency-value" *ngIf="overview.value?.value">
                     {{ formatCurrency(overview.value.value).integer }}<span class="decimal-part">.{{ formatCurrency(overview.value.value).decimal }}</span>
@@ -85,7 +85,7 @@
         <div class="rates-grid">
             <div *ngFor="let rate of conversionRates()" class="rate-card">
                 <div class="rate-pair">{{ rate.sourceCurrency }} → {{ rate.destinationCurrency }}</div>
-                <div class="rate-value">{{ rate.value | number:'1.4-4' }}</div>
+                <div class="rate-value">{{ rate.value | number:'1.4-4':'en-US' }}</div>
                 <div class="rate-date">{{ rate.date | date:'mediumDate' }}</div>
             </div>
         </div>
@@ -95,7 +95,7 @@
     <div class="debug-info">
         <h3>Debug Information</h3>
         <p>Loading state: <strong>{{loading()}}</strong></p>
-        <p>Number of pot instances: <strong>{{potInstances().length}}</strong></p>
+        <p>Number of pot instances: <strong>{{potInstances().length | number:'1.0-0':'en-US'}}</strong></p>
         <p>Error state: <strong>{{error() || 'None'}}</strong></p>
         <button (click)="loadPots()" class="retry-button">Reload Data</button>
     </div>

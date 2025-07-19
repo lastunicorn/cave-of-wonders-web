@@ -14,7 +14,8 @@ export class FormattedCurrencyValue {
             const formatted = value.toFixed(2);
             const parts = formatted.split('.');
 
-            this.integer = parts[0];
+            // Add thousands separator to the integer part
+            this.integer = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             this.decimal = parts.length > 1 ? parts[1] : '00';
             this.currency = currency;
         }

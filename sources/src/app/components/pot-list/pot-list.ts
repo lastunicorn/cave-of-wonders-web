@@ -73,7 +73,7 @@ export class PotList implements OnInit {
         const parts = formatted.split('.');
 
         return {
-            integer: parts[0],
+            integer: parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','),
             decimal: parts.length > 1 ? parts[1] : '00'
         };
     }
