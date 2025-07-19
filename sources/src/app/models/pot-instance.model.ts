@@ -10,6 +10,5 @@ export interface PotInstance {
     isActive: boolean;
     value: MonetaryValue;
     normalizedValue: MonetaryValue;
-    accountNumber?: string;
 }
 
