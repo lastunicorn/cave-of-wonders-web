@@ -20,7 +20,7 @@ export class ApplicationTheme {
         if (typeof document !== 'undefined') {
             document.documentElement.setAttribute('data-theme', theme);
         }
-        
+
         this.configuration.theme = theme;
     }
 
@@ -30,22 +30,20 @@ export class ApplicationTheme {
 
     toggleTheme(): void {
         const current = this.currentTheme();
-        let newTheme: Theme;
-        
+        const newTheme: Theme = this.chooseNextTheme(current);
+        this.currentTheme.set(newTheme);
+    }
+
+    private chooseNextTheme(current: Theme): Theme {
         switch (current) {
             case 'light':
-                newTheme = 'dark';
-                break;
+                return 'dark';
             case 'dark':
-                newTheme = 'cream';
-                break;
+                return 'cream';
             case 'cream':
-                newTheme = 'light';
-                break;
+                return 'light';
             default:
-                newTheme = 'light';
+                return 'light';
         }
-        
-        this.currentTheme.set(newTheme);
     }
 }
