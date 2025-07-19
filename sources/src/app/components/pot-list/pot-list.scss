@@ -357,9 +357,7 @@ h2 {
 }
 
 .rate-value {
-  font-size: 20px;
-  font-weight: bold;
-  color: #1565c0;
+  font-size: inherit;
 }
 
 .rate-date {
@@ -400,4 +398,11 @@ h2 {
   font-weight: 600;
   color: #555;
   margin-right: 5px;
+}
+
+.decimal-part {
+    font-size: 0.7em;
+    vertical-align: baseline;
+    color: #666;
+    margin-left: 2px;
 }

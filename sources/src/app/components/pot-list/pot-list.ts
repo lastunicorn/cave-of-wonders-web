@@ -60,6 +60,21 @@ export class PotList implements OnInit {
         });
     }
 
+    formatCurrency(value: number): { integer: string, decimal: string } {
+        if (value === null || value === undefined) {
+            return { integer: '0', decimal: '00' };
+        }
+        
+        // Format to 2 decimal places and split by decimal point
+        const formatted = value.toFixed(2);
+        const parts = formatted.split('.');
+        
+        return {
+            integer: parts[0],
+            decimal: parts.length > 1 ? parts[1] : '00'
+        };
+    }
+
     getActivePotCount(): number {
         return this.potInstances()?.filter(pot => pot.isActive).length || 0;
     }
