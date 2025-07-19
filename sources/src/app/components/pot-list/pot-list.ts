@@ -1,15 +1,16 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PotService } from '../../services/pot.service';
+import { PotService } from '../../external/cave-api/pot.endpoint';
 import { PotInstance, MonetaryValue } from '../../models/pot-instance.model';
 import { HttpClientModule } from '@angular/common/http';
 import { ConversionRate, CurrencyTotalOverview } from '../../models/pot-response.model';
 import { FormsModule } from '@angular/forms';
+import { PotCard } from '../pot-card/pot-card';
 
 @Component({
     selector: 'app-pot-list',
     standalone: true,
-    imports: [CommonModule, HttpClientModule, FormsModule],
+    imports: [CommonModule, HttpClientModule, FormsModule, PotCard],
     templateUrl: './pot-list.html',
     styleUrl: './pot-list.scss'
 })

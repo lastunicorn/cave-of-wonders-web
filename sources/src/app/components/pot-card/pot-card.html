@@ -1,0 +1,39 @@
+<div class="account-card" [class.inactive]="!account.isActive">
+
+    <div class="account-status" [class.active]="account.isActive" [class.inactive]="!account.isActive">
+        {{ account.isActive ? 'Active' : 'Inactive' }}
+    </div>
+
+    <h3>{{ account.name }}</h3>
+
+    <div class="account-balance">
+        <span class="currency">{{ account.value.currency }}</span>
+        <span class="amount">
+            {{ formatCurrency(account.value.value).integer }}<span class="decimal-part">.{{
+                formatCurrency(account.value.value).decimal }}</span>
+        </span>
+    </div>
+
+    <div *ngIf="account.normalizedValue && account.normalizedValue.currency !== account.value.currency"
+        class="normalized-value">
+        <span class="label">Normalized Value: </span>
+        <span class="currency">{{ account.normalizedValue.currency }} </span>
+        <span class="amount">
+            {{ formatCurrency(account.normalizedValue.value).integer }}<span class="decimal-part">.{{
+                formatCurrency(account.normalizedValue.value).decimal }}</span>
+        </span>
+    </div>
+
+    <div class="account-details">
+        <div *ngIf="account.accountNumber" class="detail-item">
+            <span class="label">Account:</span> {{ account.accountNumber }}
+        </div>
+        <div *ngIf="account.value.date" class="detail-item">
+            <span class="label">Value Date:</span> {{ account.value.date | date:'mediumDate' }}
+        </div>
+        <div class="detail-item">
+            <span class="label">ID:</span> {{ account.id }}
+        </div>
+    </div>
+
+</div>

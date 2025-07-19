@@ -1,8 +1,8 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpParams, HttpContext } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PotResponse } from '../models/pot-response.model';
-import { SSL_VERIFY } from '../interceptors/self-signed-certificate.interceptor';
+import { PotResponse } from '../../models/pot-response.model';
+import { SSL_VERIFY } from '../../interceptors/self-signed-certificate.interceptor';
 
 @Injectable({
     providedIn: 'root'
