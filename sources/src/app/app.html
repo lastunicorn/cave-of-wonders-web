@@ -21,7 +21,7 @@
             Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        color: #333;
+        color: var(--text-primary);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -34,11 +34,11 @@
     }
 
     header {
-        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-        color: white;
+        background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+        color: var(--text-on-primary);
         padding: 2rem 0;
         text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px var(--shadow-light);
     }
 
     .header-content {
@@ -61,15 +61,16 @@
 
     main {
         flex: 1;
-        background-color: #f5f5f5;
+        background-color: var(--bg-secondary);
         padding: 2rem 0;
     }
 
     footer {
-        background-color: #333;
-        color: white;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
         padding: 1rem 0;
         text-align: center;
+        border-top: 1px solid var(--border-light);
     }
 
     footer p {

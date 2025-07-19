@@ -1,9 +1,23 @@
 <nav class="main-menu">
-    <ul>
-        @for (item of menuItems; track item) {
-        <li>
-            <a [routerLink]="item.path" routerLinkActive="active">{{ item.label }}</a>
-        </li>
-        }
-    </ul>
+    <div class="menu-content">
+        <ul>
+            @for (item of menuItems; track item) {
+            <li>
+                <a [routerLink]="item.path" routerLinkActive="active">{{ item.label }}</a>
+            </li>
+            }
+        </ul>
+        
+        <div class="theme-selector">
+            <label for="theme-select">Theme:</label>
+            <select 
+                id="theme-select" 
+                [value]="themeService.currentTheme()"
+                (change)="onThemeChange($event)"
+                class="theme-dropdown">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
+    </div>
 </nav>

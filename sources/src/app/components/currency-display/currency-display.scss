@@ -3,11 +3,13 @@
 
 .currency {
     font-size: 0.8em;
+    color: var(--text-secondary);
 }
 
 .decimal-part {
     font-size: 0.7em;
     vertical-align: baseline;
-    color: #666;
+    color: var(--text-secondary);
     margin-left: 2px;
+    opacity: 0.8;
 }
