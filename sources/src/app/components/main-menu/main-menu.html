@@ -12,7 +12,7 @@
             <label for="theme-select">Theme:</label>
             <select 
                 id="theme-select" 
-                [value]="themeService.currentTheme()"
+                [value]="applicationTheme.currentTheme()"
                 (change)="onThemeChange($event)"
                 class="theme-dropdown">
                 <option value="light">Light</option>

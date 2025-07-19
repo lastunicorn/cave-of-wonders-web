@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ThemeService, Theme } from '../../services/theme.service';
+import { ApplicationTheme } from '../../services/application-theme.service';
+import { Theme } from '../../services/theme';
 
 @Component({
     selector: 'app-main-menu',
@@ -17,10 +18,10 @@ export class MainMenu {
         { path: '/pots', label: 'Pots' }
     ];
 
-    constructor(public themeService: ThemeService) {}
+    constructor(public applicationTheme: ApplicationTheme) {}
 
     onThemeChange(event: Event): void {
         const target = event.target as HTMLSelectElement;
-        this.themeService.setTheme(target.value as Theme);
+        this.applicationTheme.setTheme(target.value as Theme);
     }
 }
