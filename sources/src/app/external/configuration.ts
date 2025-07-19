@@ -19,7 +19,7 @@ export class Configuration {
         }
 
         const stored = localStorage.getItem(this.THEME_KEY);
-        return (stored === 'dark' || stored === 'light')
+        return (stored === 'dark' || stored === 'light' || stored === 'cream')
             ? stored
             : 'light';
     }

@@ -29,9 +29,23 @@ export class ApplicationTheme {
     }
 
     toggleTheme(): void {
-        const newTheme = this.currentTheme() === 'light'
-            ? 'dark'
-            : 'light';
+        const current = this.currentTheme();
+        let newTheme: Theme;
+        
+        switch (current) {
+            case 'light':
+                newTheme = 'dark';
+                break;
+            case 'dark':
+                newTheme = 'cream';
+                break;
+            case 'cream':
+                newTheme = 'light';
+                break;
+            default:
+                newTheme = 'light';
+        }
+        
         this.currentTheme.set(newTheme);
     }
 }
