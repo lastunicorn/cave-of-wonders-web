@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PotInstance } from '../../models/pot-instance.model';
-import { FormattedCurrency } from '../../utils/formatted-currency';
+import { FormattedCurrencyValue } from '../../utils/formatted-currency-value';
 
 @Component({
     selector: 'app-pot-card',
@@ -14,8 +14,8 @@ export class PotCard {
     @Input({ required: true })
     account!: PotInstance;
 
-    private _value!: FormattedCurrency;
-    private _normalizedValue!: FormattedCurrency;
+    private _value!: FormattedCurrencyValue;
+    private _normalizedValue!: FormattedCurrencyValue;
 
     get isActive(): boolean {
         return this.account.isActive;
@@ -29,24 +29,20 @@ export class PotCard {
         return this.account.name;
     }
 
-    get currency(): string {
-        return this.account.value.currency;
-    }
-
     get date(): string | Date {
         return this.account.value.date;
     }
 
-    get value(): FormattedCurrency {
+    get value(): FormattedCurrencyValue {
         if (!this._value) {
-            this._value = new FormattedCurrency(this.account.value.value);
+            this._value = new FormattedCurrencyValue(this.account.value.value, this.account.value.currency);
         }
         return this._value;
     }
 
-    get normalizedValue(): FormattedCurrency {
+    get normalizedValue(): FormattedCurrencyValue {
         if (!this._normalizedValue) {
-            this._normalizedValue = new FormattedCurrency(this.account.normalizedValue?.value || 0);
+            this._normalizedValue = new FormattedCurrencyValue(this.account.normalizedValue?.value || 0, this.account.normalizedValue?.currency || '');
         }
         return this._normalizedValue;
     }

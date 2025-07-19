@@ -7,7 +7,7 @@
     <h3>{{ name }}</h3>
 
     <div class="account-balance">
-        <span class="currency">{{ currency }}</span>
+        <span class="currency">{{ value.currency }}</span>
         <span class="amount">
             {{ value.integer }}<span class="decimal-part">.{{ value.decimal }}</span>
         </span>
@@ -16,14 +16,14 @@
     <div *ngIf="isNormalizedValueVisible"
         class="normalized-value">
         <span class="label">Normalized Value: </span>
-        <span class="currency">{{ account.normalizedValue.currency }} </span>
+        <span class="currency">{{ normalizedValue.currency }} </span>
         <span class="amount">
             {{ normalizedValue.integer }}<span class="decimal-part">.{{ normalizedValue.decimal }}</span>
         </span>
     </div>
 
     <div class="account-details">
-        <div *ngIf="account.value.date" class="detail-item">
+        <div *ngIf="date" class="detail-item">
             <span class="label">Value Date:</span> {{ date | date:'mediumDate' }}
         </div>
         <div class="detail-item">
