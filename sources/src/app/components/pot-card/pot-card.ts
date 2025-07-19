@@ -2,17 +2,17 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PotInstance } from '../../models/pot-instance.model';
 import { FormattedCurrencyValue } from '../../utils/formatted-currency-value';
+import { CurrencyDisplay } from '../currency-display/currency-display';
 
 @Component({
     selector: 'app-pot-card',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, CurrencyDisplay],
     templateUrl: './pot-card.html',
     styleUrl: './pot-card.scss'
 })
 export class PotCard {
-    @Input({ required: true })
-    account!: PotInstance;
+    @Input({ required: true }) account!: PotInstance;
 
     private _value!: FormattedCurrencyValue;
     private _normalizedValue!: FormattedCurrencyValue;
