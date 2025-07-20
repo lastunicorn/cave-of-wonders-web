@@ -1,6 +1,6 @@
 import { HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpContextToken } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
-import { isDevelopmentMode } from '../utils/environment';
+import { Environment } from '../utils/environment';
 
 /**
  * HTTP context token for SSL verification
@@ -16,7 +16,7 @@ export const selfSignedCertificateInterceptor: HttpInterceptorFn = (
     next: HttpHandlerFn
 ) => {
     // Only apply this in development mode
-    if ((isDevMode() || isDevelopmentMode()) && req.url.includes('localhost')) {
+    if ((isDevMode() || Environment.isDevelopmentMode()) && req.url.includes('localhost')) {
         // Create a modified request with SSL verification disabled for localhost
         const modifiedReq = req.clone({
             context: req.context.set(SSL_VERIFY, false)
